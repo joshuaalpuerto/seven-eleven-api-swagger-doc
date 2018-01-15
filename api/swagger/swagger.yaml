@@ -52,7 +52,7 @@ paths:
         format: "int64"
       - in: "query"
         name: "limit"
-        description: "Offset"
+        description: "Limit"
         type: integer
         format: "int64"
       responses:
@@ -85,7 +85,7 @@ paths:
         format: "int64"
       - in: "query"
         name: "limit"
-        description: "Offset"
+        description: "Limit"
         type: integer
         format: "int64"
       responses:
@@ -158,7 +158,7 @@ paths:
         format: "int64"
       - in: "query"
         name: "limit"
-        description: "Offset"
+        description: "Limit"
         type: integer
         format: "int64"
       responses:
@@ -215,7 +215,7 @@ paths:
         format: "int64"
       - in: "query"
         name: "limit"
-        description: "Offset"
+        description: "Limit"
         type: integer
         format: "int64"
       responses:
@@ -225,6 +225,32 @@ paths:
             items:
               $ref: '#/definitions/search_items'
       x-swagger-router-controller: "GetSearchKeyword"
+      
+  /featured-categories:
+    get:
+      description: "Get the all featured categories"
+      tags:
+        - api
+      operationId: "GetFeaturedCategories"
+      parameters:
+      - in: "query"
+        name: "offset"
+        description: "Offset"
+        type: integer
+        format: "int64"
+      - in: "query"
+        name: "limit"
+        description: "Limit"
+        type: integer
+        format: "int64"
+      responses:
+        200:
+          description: "List of featured categories"
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/category'
+      x-swagger-router-controller: "GetFeaturedCategories"
     
   /firebase-realtime-db/transactions/{mobileNumber}/{trackingNumber}:
     put:
@@ -267,6 +293,41 @@ paths:
       
   
 definitions:
+  category:
+    type: "object"
+    properties:
+      categoryCode:
+        type: "integer"
+        description: "ID of the category"
+      name:
+        type: "string"
+        description: "Name of the brand"
+      isFeatured:
+        type: "boolean"
+        description: "Flag if item is featured or not"
+      images:
+        type: "array"
+        items:
+          $ref: '#/definitions/image'
+    
+  #brand:
+  #  type: "object"
+  #  properties:
+  #    brandCode:
+  #      type: "integer"
+  #      format: "int64"
+  #      description: "ID of the brand"
+  #    name:
+  #      type: "string"
+  #      description: "Name of the brand"
+  #    isFeatured:
+  #      type: "boolean"
+  #      description: "Flag if item is featured or not"
+  #    images:
+  #      type: "array"
+  #      items:
+  #        $ref: '#/definitions/image'
+  
   fireabse_payload:
     type: object
     properties:
@@ -332,7 +393,6 @@ definitions:
         description: "Status of the item"
         default: "RESERVED"
           
-        
   order:
     type: object
     properties:
@@ -597,41 +657,6 @@ definitions:
       agentCode:
         type: "string"
         description: "Unique cliqq code of the item"
-        
-  #category:
-  #  type: "object"
-  #  properties:
-  #    categoryCode:
-  #      type: "integer"
-  #      description: "ID of the category"
-  #    name:
-  #      type: "string"
-  #      description: "Name of the brand"
-  #    isFeatured:
-  #      type: "boolean"
-  #      description: "Flag if item is featured or not"
-  #    images:
-  #      type: "array"
-  #      items:
-  #        $ref: '#/definitions/image'
-    
-  #brand:
-  #  type: "object"
-  #  properties:
-  #    brandCode:
-  #      type: "integer"
-  #      format: "int64"
-  #      description: "ID of the brand"
-  #    name:
-  #      type: "string"
-  #      description: "Name of the brand"
-  #    isFeatured:
-  #      type: "boolean"
-  #      description: "Flag if item is featured or not"
-  #    images:
-  #      type: "array"
-  #      items:
-  #        $ref: '#/definitions/image'
         
   image:
     type: "object"
