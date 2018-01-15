@@ -22,7 +22,7 @@ tags:
 - name: api
   description: API calls
 - name: firebase
-  description: Operation for fireabase
+  description: Operation for firebase
 
 # Added by API Auto Mocking Plugin
 # host: virtserver.swaggerhub.com
@@ -225,9 +225,69 @@ paths:
             items:
               $ref: '#/definitions/search_items'
       x-swagger-router-controller: "GetSearchKeyword"
+    
+  /firebase-realtime-db/transactions/{mobileNumber}/{trackingNumber}:
+    put:
+      description: "Realtime update for firebase"
+      tags:
+        - firebase
+      operationId: "PutRealtimeDB"
+      parameters:
+      - in: path
+        name: "mobileNumber"
+        description: "mobileNumber"
+        type: string
+        default: "09291112223"
+        required: true
+      - in: path
+        name: "trackingNumber"
+        description: "trackingNumber"
+        type: string
+        default: "403479192638975014"
+        required: true
+      - in: "query"
+        name: "auth"
+        description: "Authentication from Firebase server"
+        type: string
+        default: "D5S9zGA8SsN9J28KMUlCrPGrVhHkXiBjSRSdQ999"
+        required: true
+      - in: body
+        name: "firebasePayload"
+        description: "Payload to be updated on firebase"
+        required: true
+        schema:
+          $ref: '#/definitions/fireabse_payload'
+      responses:
+        200:
+          description: "Successfully updated"
+          schema:
+            items:
+              $ref: '#/definitions/fireabse_payload'
+      x-swagger-router-controller: "PutRealtimeDB"
       
   
 definitions:
+  fireabse_payload:
+    type: object
+    properties:
+      claimCode:
+        type: string
+        description: "claim code will be sent once updated"
+        default: "9931-3930-9253"
+      lastUpdated:
+        type: string
+        format: "date-time"
+        description: "Date will be use when the status has changed"
+        default: "2018-01-15T03:42:15.036Z"
+      status:
+        type: string
+        description: "Status of the item"
+        default: "CONFIRMED"
+      points:
+        type: integer
+        description: "Points earned for that transaction. Will only be available if status is Claimed"
+        default: 10
+        
   search_items:
     type: object
     properties:
