@@ -123,6 +123,35 @@ paths:
             items:
               $ref: '#/definitions/wallet'
       x-swagger-router-controller: "GetPointsById"
+      
+  /wallet-transactions/{mobileNumber}:
+    get:
+      description: "Get the all points transaction of the user"
+      operationId: "GetTransactionsById"
+      parameters:
+      - in: path
+        name: "mobileNumber"
+        description: "mobileNumber of the user"
+        type: string
+        required: true
+        default: "09291112223"
+      - in: "query"
+        name: "offset"
+        description: "Offset"
+        type: integer
+        format: "int64"
+      - in: "query"
+        name: "limit"
+        description: "Offset"
+        type: integer
+        format: "int64"
+      responses:
+        200:
+          description: "All transaction Details"
+          schema:
+            items:
+              $ref: '#/definitions/wallet_transactions'
+      x-swagger-router-controller: "GetTransactionsById"
   
 definitions:
   promo:
