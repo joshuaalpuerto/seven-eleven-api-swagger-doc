@@ -294,7 +294,7 @@ paths:
   
 definitions:
   categories:
-    type: objects
+    type: object
     allOf:
       - $ref: '#/definitions/category'
       - type: object
@@ -308,7 +308,7 @@ definitions:
     type: "object"
     properties:
       categoryCode:
-        type: "integer"
+        type: "string"
         description: "ID of the category"
       name:
         type: "string"
