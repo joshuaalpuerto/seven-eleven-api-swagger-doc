@@ -85,6 +85,24 @@ paths:
               $ref: '#/definitions/promo'
       x-swagger-router-controller: "GetPromoById"
   
+  /products/{cliqqCode}:
+    get:
+      description: "Get Products details"
+      operationId: "GetProductById"
+      parameters:
+      - in: path
+        name: "cliqqCode"
+        description: "cliqqCode of the Product"
+        type: string
+        required: true
+      responses:
+        200:
+          description: "Product Details"
+          schema:
+            items:
+              $ref: '#/definitions/product'
+      x-swagger-router-controller: "GetProductById"
+  
 definitions:
   promo:
     type: object
