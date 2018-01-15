@@ -709,6 +709,8 @@ definitions:
         default: "PRIMARY"
         description: "Type of the image PRIMARY | BACKGROUND | SLIDER"
         enum:
+          - "MAIN"
           - "PRIMARY"
           - "BACKGROUND"
           - "SLIDER"
+          - "NAV_ICON"
