@@ -247,11 +247,26 @@ paths:
         200:
           description: "List of featured categories"
           schema:
-            type: array
             items:
-              $ref: '#/definitions/category'
+              $ref: '#/definitions/featured_categories'
       x-swagger-router-controller: "GetFeaturedCategories"
     
+  /categories:
+    get:
+      description: "Get the all categories"
+      tags:
+        - api
+      operationId: "GetCategories"
+      parameters: []
+      responses:
+        200:
+          description: "List of all categories"
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/categories'
+      x-swagger-router-controller: "GetCategories"
+      
   /firebase-realtime-db/transactions/{mobileNumber}/{trackingNumber}:
     put:
       description: "Realtime update for firebase"
@@ -293,6 +308,18 @@ paths:
       
   
 definitions:
+  featured_categories:
+    type: object
+    properties:
+      totalCount:
+        type: integer
+        description: "Total number of item, required for pagination"
+        default: 1
+      categoryList:
+        type: array
+        items:
+          $ref: '#/definitions/category'
+  
   categories:
     type: object
     allOf:
