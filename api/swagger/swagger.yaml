@@ -67,6 +67,7 @@ paths:
         type: integer
         format: "int64"
         required: true
+        default: 1
       - in: "query"
         name: "offset"
         description: "Offset"
@@ -95,6 +96,7 @@ paths:
         description: "cliqqCode of the Product"
         type: string
         required: true
+        default: "000CD"
       responses:
         200:
           description: "Product Details"
@@ -102,6 +104,25 @@ paths:
             items:
               $ref: '#/definitions/product'
       x-swagger-router-controller: "GetProductById"
+  
+  /loyalty-points/{mobileNumber}:
+    get:
+      description: "Get the current points of the user"
+      operationId: "GetPointsById"
+      parameters:
+      - in: path
+        name: "mobileNumber"
+        description: "mobileNumber of the user"
+        type: string
+        required: true
+        default: "09291112223"
+      responses:
+        200:
+          description: "Current Points Details"
+          schema:
+            items:
+              $ref: '#/definitions/wallet'
+      x-swagger-router-controller: "GetPointsById"
   
 definitions:
   promo:
