@@ -527,13 +527,7 @@ definitions:
         enum:
           - "Amount"
           - "Percentage"
-  
-  cliqqCodes: 
-    type: array
-    description: "List of cliqqcodes"
-    items:
-      $ref: '#/definitions/cliqqCode'
-  
+
   cliqqCode:
     type: "object"
     properties:
@@ -544,40 +538,40 @@ definitions:
         type: "string"
         description: "Unique cliqq code of the item"
         
-  category:
-    type: "object"
-    properties:
-      categoryCode:
-        type: "integer"
-        description: "ID of the category"
-      name:
-        type: "string"
-        description: "Name of the brand"
-      isFeatured:
-        type: "boolean"
-        description: "Flag if item is featured or not"
-      images:
-        type: "array"
-        items:
-          $ref: '#/definitions/image'
+  #category:
+  #  type: "object"
+  #  properties:
+  #    categoryCode:
+  #      type: "integer"
+  #      description: "ID of the category"
+  #    name:
+  #      type: "string"
+  #      description: "Name of the brand"
+  #    isFeatured:
+  #      type: "boolean"
+  #      description: "Flag if item is featured or not"
+  #    images:
+  #      type: "array"
+  #      items:
+  #        $ref: '#/definitions/image'
     
-  brand:
-    type: "object"
-    properties:
-      brandCode:
-        type: "integer"
-        format: "int64"
-        description: "ID of the brand"
-      name:
-        type: "string"
-        description: "Name of the brand"
-      isFeatured:
-        type: "boolean"
-        description: "Flag if item is featured or not"
-      images:
-        type: "array"
-        items:
-          $ref: '#/definitions/image'
+  #brand:
+  #  type: "object"
+  #  properties:
+  #    brandCode:
+  #      type: "integer"
+  #      format: "int64"
+  #      description: "ID of the brand"
+  #    name:
+  #      type: "string"
+  #      description: "Name of the brand"
+  #    isFeatured:
+  #      type: "boolean"
+  #      description: "Flag if item is featured or not"
+  #    images:
+  #      type: "array"
+  #      items:
+  #        $ref: '#/definitions/image'
         
   image:
     type: "object"
