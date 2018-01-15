@@ -30,6 +30,8 @@ tags:
 
 # during dev, should point to your local machine
 host: localhost:10010
+# during prod, should point to your heroku machine
+#host: seven-eleven-api-doc.herokuapp.com
 # basePath prefixes all resource paths 
 basePath: /
 
