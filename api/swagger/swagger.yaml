@@ -293,6 +293,17 @@ paths:
       
   
 definitions:
+  categories:
+    type: objects
+    allOf:
+      - $ref: '#/definitions/category'
+      - type: object
+        properties:
+          children:
+            type: array
+            items:
+              $ref: '#/definitions/category'
+    
   category:
     type: "object"
     properties:
