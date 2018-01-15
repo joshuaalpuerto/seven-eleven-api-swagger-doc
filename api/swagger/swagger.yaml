@@ -280,6 +280,79 @@ paths:
             items:
               $ref: '#/definitions/brands'
       x-swagger-router-controller: "GetBrands"
+  
+  /categories/{id}:
+    get:
+      description: "Get Products of the category"
+      tags:
+        - api
+      operationId: "GetProductByCategory"
+      parameters:
+      - in: path
+        name: "id"
+        description: "Id of the category"
+        type: string
+        required: true
+        default: "10"
+      - in: "query"
+        name: "offset"
+        description: "Offset"
+        type: integer
+        format: "int64"
+      - in: "query"
+        name: "limit"
+        description: "Limit"
+        type: integer
+        format: "int64"
+      - in: "query"
+        name: "brands"
+        description: "Brands filter for the category"
+        type: array
+        collectionFormat: csv
+        items:
+          type: string
+      responses:
+        200:
+          description: "List of Products for the category"
+          schema:
+            items:
+              $ref: '#/definitions/product_categories'
+      x-swagger-router-controller: "GetProductByCategory"
+  
+  /brands/{id}:
+    get:
+      description: "Get Products of the brand"
+      tags:
+        - api
+      operationId: "GetProductByBrand"
+      parameters:
+      - in: path
+        name: "id"
+        description: "Id of the brand"
+        type: string
+        required: true
+        default: "10"
+      - in: "query"
+        name: "offset"
+        description: "Offset"
+        type: integer
+        format: "int64"
+      - in: "query"
+        name: "limit"
+        description: "Limit"
+        type: integer
+        format: "int64"
+      - in: "query"
+        name: "category"
+        type: string
+        description: "Category filter for this brand"
+      responses:
+        200:
+          description: "List of Products for the brand"
+          schema:
+            items:
+              $ref: '#/definitions/product_brands'
+      x-swagger-router-controller: "GetProductByBrand"
       
   /firebase-realtime-db/transactions/{mobileNumber}/{trackingNumber}:
     put:
@@ -322,6 +395,45 @@ paths:
       
   
 definitions:
+  product_brands:
+    type: object
+    properties:
+      productList:
+        type: array
+        items:
+          $ref: '#/definitions/product'
+      filters:
+        type: object
+        description: "Object for filtering"
+        properties:
+          categories:
+            type: array
+            description: 'Categories that will be use for filtering the items.'
+            items:
+              $ref: '#/definitions/category'
+              
+  product_categories:
+    type: object
+    properties:
+      productList:
+        type: array
+        items:
+          $ref: '#/definitions/product'
+      filters:
+        type: object
+        description: "Object for filtering"
+        properties:
+          categories:
+            type: array
+            description: 'Direct Sub categories that will be use for filtering the items.'
+            items:
+              $ref: '#/definitions/category'
+          brands:
+            type: array
+            description: 'Brands thats connected to this category that will be use for filtering the items.'
+            items:
+              $ref: '#/definitions/brand'
+    
   featured_categories:
     type: object
     properties:

@@ -7,6 +7,8 @@ const orderResponse = require('./order_response')
 const featuredCategories = require('./categories_featured')
 const categories = require('./categories')
 const brands = require('./brands')
+const categoriesFilter = require('./categories_filter')
+const brandsFilter = require('./brands_filter')
 
 module.exports = {
   promos,
@@ -17,5 +19,7 @@ module.exports = {
   orderResponse,
   featuredCategories,
   categories,
-  brands
+  brands,
+  categoriesFilter,
+  brandsFilter
 }
