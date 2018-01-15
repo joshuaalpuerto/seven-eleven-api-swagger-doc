@@ -262,10 +262,24 @@ paths:
         200:
           description: "List of all categories"
           schema:
-            type: array
             items:
-              $ref: '#/definitions/categories'
+              $ref: '#/definitions/category_lists'
       x-swagger-router-controller: "GetCategories"
+  
+  /brands:
+    get:
+      description: "Get the all brands"
+      tags:
+        - api
+      operationId: "GetBrands"
+      parameters: []
+      responses:
+        200:
+          description: "List of all brands"
+          schema:
+            items:
+              $ref: '#/definitions/brands'
+      x-swagger-router-controller: "GetBrands"
       
   /firebase-realtime-db/transactions/{mobileNumber}/{trackingNumber}:
     put:
@@ -320,6 +334,30 @@ definitions:
         items:
           $ref: '#/definitions/category'
   
+  brands:
+    type: object
+    properties:
+      totalCount:
+        type: integer
+        description: "Total number of item, required for pagination"
+        default: 1
+      categoryList:
+        type: array
+        items:
+          $ref: '#/definitions/brand'
+          
+  category_lists:
+    type: object
+    properties:
+      totalCount:
+        type: integer
+        description: "Total number of item, required for pagination"
+        default: 1
+      categoryList:
+        type: array
+        items:
+          $ref: '#/definitions/categories'
+    
   categories:
     type: object
     allOf:
@@ -348,23 +386,23 @@ definitions:
         items:
           $ref: '#/definitions/image'
     
-  #brand:
-  #  type: "object"
-  #  properties:
-  #    brandCode:
-  #      type: "integer"
-  #      format: "int64"
-  #      description: "ID of the brand"
-  #    name:
-  #      type: "string"
-  #      description: "Name of the brand"
-  #    isFeatured:
-  #      type: "boolean"
-  #      description: "Flag if item is featured or not"
-  #    images:
-  #      type: "array"
-  #      items:
-  #        $ref: '#/definitions/image'
+  brand:
+    type: "object"
+    properties:
+      brandCode:
+        type: "integer"
+        format: "int64"
+        description: "ID of the brand"
+      name:
+        type: "string"
+        description: "Name of the brand"
+      isFeatured:
+        type: "boolean"
+        description: "Flag if item is featured or not"
+      images:
+        type: "array"
+        items:
+          $ref: '#/definitions/image'
   
   fireabse_payload:
     type: object
@@ -714,3 +752,4 @@ definitions:
           - "BACKGROUND"
           - "SLIDER"
           - "NAV_ICON"
+          - "BRAND_LOGO"

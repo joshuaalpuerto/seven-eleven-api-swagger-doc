@@ -6,6 +6,7 @@ const walletTransactions = require('./wallet_transactions')
 const orderResponse = require('./order_response')
 const featuredCategories = require('./categories_featured')
 const categories = require('./categories')
+const brands = require('./brands')
 
 module.exports = {
   promos,
@@ -15,5 +16,6 @@ module.exports = {
   walletTransactions,
   orderResponse,
   featuredCategories,
-  categories
+  categories,
+  brands
 }
