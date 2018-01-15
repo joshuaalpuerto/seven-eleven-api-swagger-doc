@@ -1,0 +1,374 @@
+swagger: '2.0'
+info:
+  description: CLiQQ Shop API reference
+  version: 1.0.0
+  title: CLiQQ Shop API
+  # put the contact info for your development or API team
+  contact:
+    email: joshua@offshorly.com
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+
+# Added by API Auto Mocking Plugin
+# host: virtserver.swaggerhub.com
+# basePath: /Developer9/Cliqqshop/1.0.0
+
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+
+schemes:
+ - http
+ - https
+  
+paths:
+  /promos:
+    get:
+      description: "Get all promos active"
+      operationId: "GetAllPromos"
+      parameters:
+      - in: "query"
+        name: "offset"
+        description: "Offset"
+        type: integer
+        format: "int64"
+      - in: "query"
+        name: "limit"
+        description: "Offset"
+        type: integer
+        format: "int64"
+      responses:
+        200:
+          description: "List of all promos"
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/promo_fragment'
+      x-swagger-router-controller: "GetAllPromos" 
+      
+  /promos/{id}:
+    get:
+      description: "Get Promo products"
+      operationId: "GetPromoById"
+      parameters:
+      - in: path
+        name: "id"
+        description: "Id of the promo"
+        type: integer
+        format: "int64"
+        required: true
+      - in: "query"
+        name: "offset"
+        description: "Offset"
+        type: integer
+        format: "int64"
+      - in: "query"
+        name: "limit"
+        description: "Offset"
+        type: integer
+        format: "int64"
+      responses:
+        200:
+          description: "Promo and Product list"
+          schema:
+            items:
+              $ref: '#/definitions/promo'
+      x-swagger-router-controller: "GetPromoById"
+  
+definitions:
+  promo:
+    type: object
+    allOf:
+      - $ref: '#/definitions/promo_fragment'
+      - type: object
+        properties:
+          productList:
+            type: array
+            items:
+              $ref: '#/definitions/product'
+    
+  promo_fragment:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: "Unique ID for the promo"
+      name:
+        type: string
+        description: "Name of the promo"
+        default: "Holiday Promo"
+      endtime:
+        type: string
+        format: "date-time"
+        description: "Will the promo end"
+      images:
+        type: array
+        items:
+          $ref: '#/definitions/image'
+    
+  
+  wallet_transactions:
+    type: object
+    allOf:
+      - $ref: '#/definitions/wallet'
+      - type: object
+        properties:
+          transactions:
+            type: array
+            items:
+              $ref: '#/definitions/transaction'
+  
+  transaction:
+    type: object
+    properties:
+      product:
+        $ref: '#/definitions/product_transaction_fragment'
+      datetime:
+        type: string
+        format: 'date-time'
+        description: "Date time the transaction happen"
+      points:
+        type: integer
+        description: "Points use for the item"
+      type:
+        type: string
+        enum:
+          - plus
+          - minus
+  
+  product_transaction_fragment:
+    type: object
+    properties:
+      cliqqCode:
+        type: string
+        description: "CliqqCode of the item you use your points for"
+        default: "00CD"
+      name:
+        type: string
+        description: "Name of the item"
+    
+  wallet:
+    type: object
+    properties:
+      currentPoints:
+        type: integer
+        description: "Current Points available"
+        default: 280
+
+  product:
+    type: object
+    allOf:
+      - $ref: '#/definitions/product_association_fragment'
+      - type: object
+        properties:
+          association:
+            type: array
+            description: "List of product association"
+            items:
+              $ref: '#/definitions/product_assocation'
+          gtin:
+            type: string
+            description: "gtin"
+            default: "PSC01J0000003"
+          returnPolicy:
+            type: string
+            description: "Return policy"
+          returnable:
+            type: boolean
+            description: "If item is returnable or not"
+          shortDescription:
+            type: string
+            description: "Short Description of the item"
+          priceList:
+            type: array
+            items:
+              allOf:
+                - $ref: '#/definitions/price'
+                - $ref: '#/definitions/discount'
+          points:
+            $ref: '#/definitions/points'
+          images:
+            type: array
+            items: 
+              $ref: '#/definitions/image'
+              
+  product_assocation:
+    type: object
+    properties:
+      fromData:
+        type: string
+        format: "date"
+        description: "When the item was associated? (Not used)"
+      products:
+        $ref: '#/definitions/product_association_fragment'
+
+  product_association_fragment:
+    type: object
+    properties:
+      cliqqCodes:
+        type: array
+        items:
+          $ref: '#/definitions/cliqqCode'
+      availableQuantity:
+        type: integer
+        description: "Quantity of the item"
+        default: 20
+      longDescription:
+        type: string
+        description: "Description of the item"
+      name:
+        type: string
+        description: "Name of the product"
+      oum:
+        $ref: '#/definitions/oum'
+    
+  oum:
+    type: object
+    properties:
+      name:
+        type: string
+        description: "Size of the item S | M | L"
+        default: "S"
+        enum:
+          - "S"
+          - "M"
+          - "L"
+      type:
+        type: string
+        description: "Right now its just Size"
+        default: "size"
+  
+  points: 
+    type: object
+    properties:
+      multiplier:
+        type: string
+        description: "Multiplier that will be calcuated for Points or Cash"
+        default: "1.3"
+      method:
+        $ref: '#/definitions/points_method_variable'
+  
+  points_method_variable:
+    type: object
+    properties:
+      cod:
+        type: string
+        description: "Cash on Delivery, Assuming Percentage calculation for earning"
+        default: "5"
+      cash:
+        type: string
+        description: "Prepaid, Assuming Percentage calculation for earning"
+        default: "10"
+      poc:
+        type: string
+        description: "Points or Cash, Assuming Percentage calculation for earning"
+        default: "2"
+    
+  price:
+    type: object
+    properties:
+      amount: 
+        type: integer
+        description: "Amount of the item"
+        default: 100
+      currency:
+        type: string
+        description: "Type of currency"
+        default: "PHP"
+  
+  discount:
+    type: object
+    properties:
+      value: 
+        type: integer
+        description: "Amount of the item"
+        default: 100
+      currency:
+        type: string
+        description: "Type of currency"
+        default: "DPHP"
+      type:
+        type: string
+        description: "Type of discount Amount | Percentage"
+        default: "Amount"
+        enum:
+          - "Amount"
+          - "Percentage"
+  
+  cliqqCodes: 
+    type: array
+    description: "List of cliqqcodes"
+    items:
+      $ref: '#/definitions/cliqqCode'
+  
+  cliqqCode:
+    type: "object"
+    properties:
+      cliqqCode: 
+        type: "string"
+        description: "Unique cliqq code of the item"
+      agentCode:
+        type: "string"
+        description: "Unique cliqq code of the item"
+        
+  category:
+    type: "object"
+    properties:
+      categoryCode:
+        type: "integer"
+        description: "ID of the category"
+      name:
+        type: "string"
+        description: "Name of the brand"
+      isFeatured:
+        type: "boolean"
+        description: "Flag if item is featured or not"
+      images:
+        type: "array"
+        items:
+          $ref: '#/definitions/image'
+    
+  brand:
+    type: "object"
+    properties:
+      brandCode:
+        type: "integer"
+        format: "int64"
+        description: "ID of the brand"
+      name:
+        type: "string"
+        description: "Name of the brand"
+      isFeatured:
+        type: "boolean"
+        description: "Flag if item is featured or not"
+      images:
+        type: "array"
+        items:
+          $ref: '#/definitions/image'
+        
+  image:
+    type: "object"
+    properties:
+      imageUrl:
+        type: "string"
+        description: "Url of the image"
+        format: "url"
+        default: "https://cliqqshop.img.com/image1.png"
+      imageType:
+        type: "string"
+        default: "PRIMARY"
+        description: "Type of the image PRIMARY | BACKGROUND | SLIDER"
+        enum:
+          - "PRIMARY"
+          - "BACKGROUND"
+          - "SLIDER"
