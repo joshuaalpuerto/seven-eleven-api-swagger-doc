@@ -1,4 +1,6 @@
 # 7-Eleven CLiQQ API Documentation
+[API Document](https://swaggerhub.com/apis/Developer9/Cliqqshop/1.0.0)
+
 ## Development Environment Setup
 1. Make sure you have `nvm`, node `v8++` installed
 2. Install `yarn` - `npm install -g yarn`.
