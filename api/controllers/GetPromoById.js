@@ -1,8 +1,12 @@
 'use strict'
-const { promo } = require('../../utils/fixtures')
+const { promo, product } = require('../../utils/fixtures')
 
 function GetPromoById(req, res) {
-  res.json(promo)
+  res.json({
+    ...promo,
+    productList: [ product ],
+    totalCount: 1
+  })
 }
 
 module.exports = {
