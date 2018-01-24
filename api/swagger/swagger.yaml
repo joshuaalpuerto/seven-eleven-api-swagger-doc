@@ -280,6 +280,11 @@ paths:
         description: "Limit"
         type: integer
         format: "int64"
+      - in: "query"
+        name: "parent"
+        description: "Filter the categories by parent ID"
+        type: integer
+        format: "int64"
       responses:
         200:
           description: "List of all categories"
@@ -303,6 +308,11 @@ paths:
       - in: "query"
         name: "limit"
         description: "Limit"
+        type: integer
+        format: "int64"
+      - in: "query"
+        name: "category"
+        description: "Filter the brands by category"
         type: integer
         format: "int64"
       responses:
