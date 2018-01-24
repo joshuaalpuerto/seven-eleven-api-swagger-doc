@@ -49,12 +49,22 @@ paths:
       parameters:
       - in: "query"
         name: "offset"
-        description: "Offset"
+        description: "Offset for the promo"
         type: integer
         format: "int64"
       - in: "query"
         name: "limit"
-        description: "Limit"
+        description: "Limit for the promo"
+        type: integer
+        format: "int64"
+      - in: "query"
+        name: "productOffset"
+        description: "Offset for the product"
+        type: integer
+        format: "int64"
+      - in: "query"
+        name: "productLimit"
+        description: "Limit for the product"
         type: integer
         format: "int64"
       responses:
