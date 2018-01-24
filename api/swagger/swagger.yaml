@@ -269,7 +269,17 @@ paths:
       tags:
         - api
       operationId: "GetCategories"
-      parameters: []
+      parameters: 
+      - in: "query"
+        name: "offset"
+        description: "Offset"
+        type: integer
+        format: "int64"
+      - in: "query"
+        name: "limit"
+        description: "Limit"
+        type: integer
+        format: "int64"
       responses:
         200:
           description: "List of all categories"
@@ -284,7 +294,17 @@ paths:
       tags:
         - api
       operationId: "GetBrands"
-      parameters: []
+      parameters:
+      - in: "query"
+        name: "offset"
+        description: "Offset"
+        type: integer
+        format: "int64"
+      - in: "query"
+        name: "limit"
+        description: "Limit"
+        type: integer
+        format: "int64"
       responses:
         200:
           description: "List of all brands"
