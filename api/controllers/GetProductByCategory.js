@@ -4,10 +4,6 @@ const { categoriesFilter, brandsFilter, product } = require('../../utils/fixture
 function GetProductByCategory(req, res) {
   res.json({
     productLists: [product],
-    filters: {
-      categories: categoriesFilter,
-      brands: brandsFilter
-    },
     totalCount: 1
   })
 }
