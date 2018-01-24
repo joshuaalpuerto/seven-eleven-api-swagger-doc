@@ -73,7 +73,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/promo_fragment'
+              $ref: '#/definitions/promo'
       x-swagger-router-controller: "GetAllPromos" 
       
   /promos/{id}:
@@ -639,6 +639,10 @@ definitions:
             type: array
             items:
               $ref: '#/definitions/product'
+          totalCount:
+            type: integer
+            description: "Total number of item, required for pagination"
+            default: 1
     
   promo_fragment:
     type: object
