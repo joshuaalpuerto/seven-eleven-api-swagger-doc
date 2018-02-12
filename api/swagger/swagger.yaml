@@ -285,6 +285,11 @@ paths:
         description: "Filter the categories by parent ID"
         type: integer
         format: "int64"
+      - in: "query"
+        name: "brand"
+        description: "Filter the categories associated with the brand"
+        type: integer
+        format: "int64"
       responses:
         200:
           description: "List of all categories"
