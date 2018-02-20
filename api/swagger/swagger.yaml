@@ -762,6 +762,7 @@ definitions:
               allOf:
                 - $ref: '#/definitions/price'
                 - $ref: '#/definitions/discount'
+                - $ref: '#/definitions/promoDiscount'
           points:
             $ref: '#/definitions/points'
           images:
@@ -856,21 +857,31 @@ definitions:
   discount:
     type: object
     properties:
-      value: 
+      amount: 
         type: integer
-        description: "Amount of the item"
-        default: 100
+        description: "Percentage Amount deductable"
+        default: 10
       currency:
         type: string
         description: "Type of currency"
         default: "DPHP"
-      type:
-        type: string
-        description: "Type of discount Amount | Percentage"
+        
+  promoDiscount:
+    type: object
+    description: "this will calculate on \"DPHP\" if exist."
+    properties:
+      type: 
+        type: "string"
+        description: "Type either Amount or Percentage"
         default: "Amount"
-        enum:
-          - "Amount"
-          - "Percentage"
+      value: 
+        type: integer
+        description: "Amount that will be deducted from discount"
+        default: 10
+      currency:
+        type: string
+        description: "Type of currency for promo"
+        default: "<PRMO>"
 
   cliqqCode:
     type: "object"
