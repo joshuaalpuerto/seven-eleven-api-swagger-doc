@@ -1,8 +1,12 @@
 'use strict'
-const { product } = require('../../utils/fixtures')
+const { product, brands } = require('../../utils/fixtures')
 
 function GetProductById(req, res) {
-  res.json(product)
+  res.json({ 
+    brand: brands[0],
+    ...product,
+
+  })
 }
 
 module.exports = {

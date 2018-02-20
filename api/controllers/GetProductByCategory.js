@@ -1,9 +1,12 @@
 'use strict'
-const { categoriesFilter, brandsFilter, product } = require('../../utils/fixtures')
+const { categoriesFilter, brandsFilter, product, brands } = require('../../utils/fixtures')
 
 function GetProductByCategory(req, res) {
   res.json({
-    productLists: [product],
+    productLists: [{ 
+      brand: brands[0],
+      ...product,
+    }],
     totalCount: 1
   })
 }

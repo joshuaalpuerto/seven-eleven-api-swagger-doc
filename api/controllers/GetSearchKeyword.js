@@ -1,9 +1,12 @@
 'use strict'
-const { product } = require('../../utils/fixtures')
+const { product, brands } = require('../../utils/fixtures')
 
 function GetSearchKeyword(req, res) {
   res.json({
-    productList: [product],
+    productList: [{ 
+      brand: brands[0],
+      ...product,
+    }],
     totalCount: 1
   })
 }
