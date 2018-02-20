@@ -12,8 +12,11 @@ module.exports = {
     currency: "PHP"
   }, {
     currency: "DPHP",
+    amount: 10.00,
+  }, {
+    currency: "<Promo>",
     type: "Amount",
-    value: 10.00
+    value: 10.00,
   }],
   availableQuantity: 1,
   deliveryPromiseMessage: "<p>Delivery for:<\u002fp>\n            <p>Mega Manila: 1-3 Days<\u002fp>\n            <p>Major Luzon Provinces: 3-5 Days<\u002fp>\n            <p>Vis-Min Provinces: 7-14 Days (Not available yet!)<\u002fp>",
