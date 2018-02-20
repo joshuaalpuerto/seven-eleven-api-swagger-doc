@@ -762,7 +762,7 @@ definitions:
               allOf:
                 - $ref: '#/definitions/price'
                 - $ref: '#/definitions/discount'
-                - $ref: '#/definitions/promoDiscount'
+                - $ref: '#/definitions/promo_discount'
           points:
             $ref: '#/definitions/points'
           images:
@@ -866,7 +866,7 @@ definitions:
         description: "Type of currency"
         default: "DPHP"
         
-  promoDiscount:
+  promo_discount:
     type: object
     description: "this will calculate on \"DPHP\" if exist."
     properties:
