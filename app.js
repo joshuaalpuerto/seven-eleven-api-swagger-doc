@@ -8,7 +8,7 @@ module.exports = app; // for testing
 var config = {
   appRoot: __dirname // required config
 };
-
+console.log(config)
 SwaggerExpress.create(config, function(err, swaggerExpress) {
   if (err) { throw err; }
   app.use(cors());
