@@ -738,6 +738,14 @@ definitions:
       - $ref: '#/definitions/product_association_fragment'
       - type: object
         properties:
+          promo:
+            description: "Promo group of the item"
+            items:
+              $ref: '#/definitions/promo_fragment'
+          brand:
+            description: "Brand of the item"
+            items:
+              $ref: '#/definitions/brand'
           association:
             type: array
             description: "List of product association"
