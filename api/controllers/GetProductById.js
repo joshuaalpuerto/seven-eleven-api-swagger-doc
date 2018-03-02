@@ -1,9 +1,10 @@
 'use strict'
-const { product, brands } = require('../../utils/fixtures')
+const { product, brands, promo } = require('../../utils/fixtures')
 
 function GetProductById(req, res) {
   res.json({ 
     brand: brands[0],
+    promo,
     ...product,
 
   })
