@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: CLiQQ Shop API reference
-  version: v1.1.4
+  version: v1.1.5
   title: CLiQQ Shop API
   # put the contact info for your development or API team
   contact:
@@ -646,8 +646,31 @@ definitions:
         type: string
         description: "defaults to PWA"
         default: "PWA"
-      
-      
+      totalPrice:
+        type: string
+        description: "for Promo Orders, PWA should send calculated totalPrice"
+        default: "100"
+      promoCode:
+        type: string
+        description: "for Promo Orders, PWA should send promoCode"
+        default: "ABC100"
+      payment:
+        type: array
+        items:
+          allOf:
+            - $ref: '#/definitions/payment_tender'
+          
+  payment_tender:
+    type: object
+    properties:
+      tender:
+        type: string
+        description: "Type of Payment"
+        default: 'CASH'
+      value:
+        type: string
+        description: "Amount"
+        default: "100"
     
   promo:
     type: object
