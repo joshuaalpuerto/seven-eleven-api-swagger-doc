@@ -628,7 +628,7 @@ definitions:
         type: string
         description: "Quantity of product"
         default: "1"
-      deliveryLocationsId:
+      deliveryLocationId:
         type: string
         description: "storeId if method is Cash on Delivery"
         default: "0001"
@@ -805,10 +805,10 @@ definitions:
       name:
         type: string
         description: "Name of the product"
-      oum:
-        $ref: '#/definitions/oum'
+      uom:
+        $ref: '#/definitions/uom'
     
-  oum:
+  uom:
     type: object
     properties:
       name:
