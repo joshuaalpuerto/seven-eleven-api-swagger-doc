@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: CLiQQ Shop API reference
-  version: v1.1.5
+  version: v1.1.6
   title: CLiQQ Shop API
   # put the contact info for your development or API team
   contact:
@@ -29,9 +29,9 @@ tags:
 # basePath: /Developer9/Cliqqshop/1.0.0
 
 # during dev, should point to your local machine
-host: localhost:10010
+# host: localhost:10010
 # during prod, should point to your heroku machine
-#host: seven-eleven-api-doc.herokuapp.com
+host: seven-eleven-api-doc.herokuapp.com
 # basePath prefixes all resource paths 
 basePath: /
 
@@ -658,15 +658,28 @@ definitions:
         type: array
         items:
           allOf:
-            - $ref: '#/definitions/payment_tender'
+            - $ref: '#/definitions/payment_tender_cash'
+            - $ref: '#/definitions/payment_tender_points'
           
-  payment_tender:
+  payment_tender_cash:
     type: object
     properties:
       tender:
         type: string
         description: "Type of Payment"
         default: 'CASH'
+      value:
+        type: string
+        description: "Amount"
+        default: "100"
+        
+  payment_tender_points:
+    type: object
+    properties:
+      tender:
+        type: string
+        description: "Type of Payment"
+        default: 'POINTS'
       value:
         type: string
         description: "Amount"
@@ -717,7 +730,11 @@ definitions:
             type: array
             items:
               $ref: '#/definitions/transaction'
-  
+          totalCount:
+            type: integer
+            description: "Total number of item, required for pagination"
+            default: 1
+            
   transaction:
     type: object
     properties:
@@ -735,7 +752,7 @@ definitions:
         enum:
           - plus
           - minus
-  
+        
   product_transaction_fragment:
     type: object
     properties:
