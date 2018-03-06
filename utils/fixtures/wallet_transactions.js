@@ -17,5 +17,6 @@ module.exports = {
     datetime: "2018-01-15T03:42:15.036Z",
     points: 10,
     type: "minus"
-  }]
+  }],
+  totalCount: 2
 }
