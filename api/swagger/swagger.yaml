@@ -76,7 +76,7 @@ paths:
               $ref: '#/definitions/promo'
       x-swagger-router-controller: "GetAllPromos" 
       
-  /promos/{id}:
+  /promos/{code}:
     get:
       description: "Get Promo products"
       tags:
@@ -84,7 +84,7 @@ paths:
       operationId: "GetPromoById"
       parameters:
       - in: path
-        name: "id"
+        name: "code"
         description: "Code of the promo"
         type: integer
         format: "int64"
@@ -328,7 +328,7 @@ paths:
               $ref: '#/definitions/brands'
       x-swagger-router-controller: "GetBrands"
   
-  /categories/{id}:
+  /categories/{code}:
     get:
       description: "Get Products of the category"
       tags:
@@ -336,7 +336,7 @@ paths:
       operationId: "GetProductByCategory"
       parameters:
       - in: path
-        name: "id"
+        name: "code"
         description: "Code of the category"
         type: string
         required: true
@@ -366,7 +366,7 @@ paths:
               $ref: '#/definitions/product_categories'
       x-swagger-router-controller: "GetProductByCategory"
   
-  /brands/{id}:
+  /brands/{code}:
     get:
       description: "Get Products of the brand"
       tags:
@@ -374,7 +374,7 @@ paths:
       operationId: "GetProductByBrand"
       parameters:
       - in: path
-        name: "id"
+        name: "code"
         description: "Code of the brand"
         type: string
         required: true
