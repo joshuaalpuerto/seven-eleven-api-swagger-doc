@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: CLiQQ Shop API reference
-  version: v1.1.6
+  version: v1.1.7
   title: CLiQQ Shop API
   # put the contact info for your development or API team
   contact:
@@ -85,7 +85,7 @@ paths:
       parameters:
       - in: path
         name: "id"
-        description: "Id of the promo"
+        description: "Code of the promo"
         type: integer
         format: "int64"
         required: true
@@ -337,7 +337,7 @@ paths:
       parameters:
       - in: path
         name: "id"
-        description: "Id of the category"
+        description: "Code of the category"
         type: string
         required: true
         default: "10"
@@ -375,7 +375,7 @@ paths:
       parameters:
       - in: path
         name: "id"
-        description: "Id of the brand"
+        description: "Code of the brand"
         type: string
         required: true
         default: "10"
